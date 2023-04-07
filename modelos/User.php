@@ -13,6 +13,6 @@ class User
     public function authenticate($email, $password)
     {
         $sql = "SELECT id, email, nombre, apellido FROM user WHERE email='$email' AND password = '$password'";
-        return ejecutarConsultaSimpleFila($sql);
+        return runQuerySimpleRow($sql);
     }
 }

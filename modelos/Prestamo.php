@@ -12,13 +12,13 @@ class Prestamo
     private function crear_prestamo($cedula, $nombre, $fechaEstudiante)
     {
         $sql = "INSERT INTO encabezadoprestamo(cedula, nombre, fecha) VALUES('$cedula', '$nombre', '$fechaEstudiante')";
-        return ejecutarConsulta_retornarID($sql);
+        return runQueryReturnID($sql);
     }
 
     private function crear_detalle_prestamo($prestamo_id, $cod_libro, $nombre, $fechaLibro)
     {
         $sql = "INSERT INTO detalleprestamo(idprestamo, codigo, nombre, fecha) VALUES('$prestamo_id', '$cod_libro', '$nombre', '$fechaLibro')";
-        return ejecutarConsulta($sql);
+        return runQuery($sql);
     }
 
     //Implementamos un método para insertar registros
@@ -40,13 +40,13 @@ class Prestamo
     private function update_prestamo($id, $cedula, $nombreEstudiante, $fechaEstudiante)
     {
         $sql = "UPDATE encabezadoprestamo SET cedula = '$cedula', nombre = '$nombreEstudiante', fecha = '$fechaEstudiante' WHERE idprestamo = '$id'";
-        return ejecutarConsulta($sql);
+        return runQuery($sql);
     }
 
     private function update_detalle_prestamo($detalle_id, $cod_libro, $titulo, $fechaLibro)
     {
         $sql = "UPDATE detalleprestamo SET codigo = '$cod_libro', nombre = '$titulo', fecha = '$fechaLibro' WHERE iddetalle = '$detalle_id'";
-        return ejecutarConsulta($sql);
+        return runQuery($sql);
     }
 
     //Implementamos un método para editar registros
@@ -73,10 +73,10 @@ class Prestamo
             $conexion->begin_transaction();
 
             $sql1 = "DELETE FROM detalleprestamo WHERE idprestamo='$id'";
-            ejecutarConsulta($sql1);
+            runQuery($sql1);
 
             $sql2 = "DELETE FROM encabezadoprestamo WHERE idprestamo='$id'";
-            $res = ejecutarConsulta($sql2);
+            $res = runQuery($sql2);
 
             $conexion->commit();
             return $res;
@@ -90,14 +90,14 @@ class Prestamo
     public function mostrar($id)
     {
         $sql = "SELECT ep.idprestamo, ep.cedula, ep.nombre, DATE_FORMAT(ep.fecha, '%Y-%m-%d') as fechaEstudiante, dp.iddetalle, dp.codigo, dp.nombre, DATE_FORMAT(dp.fecha, '%Y-%m-%d') as fechaLibro FROM encabezadoprestamo ep JOIN detalleprestamo dp ON dp.idprestamo = ep.idprestamo WHERE ep.idprestamo='$id'";
-        return ejecutarConsultaSimpleFila($sql);
+        return runQuerySimpleRow($sql);
     }
 
     //Implementar un método para listar los registros
     public function listar()
     {
         $sql = "SELECT ep.idprestamo, ep.cedula, ep.nombre, ep.fecha as estudianteFecha, dp.nombre as titulo, dp.fecha FROM encabezadoprestamo ep JOIN detalleprestamo dp ON dp.idprestamo = ep.idprestamo";
-        return ejecutarConsulta($sql);
+        return runQuery($sql);
     }
 
     // Busca un autor por código
@@ -105,13 +105,13 @@ class Prestamo
     {
         $sql = "SELECT * FROM autor WHERE codigo = '$cod_autor'";
 
-        return ejecutarConsulta($sql);
+        return runQuery($sql);
     }
 
     // Listar autores
     public function listar_autores()
     {
         $sql = "SELECT * FROM autor";
-        return ejecutarConsulta($sql);
+        return runQuery($sql);
     }
 }

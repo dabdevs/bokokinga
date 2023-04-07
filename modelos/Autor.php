@@ -13,6 +13,6 @@ class Autor
     public function mostrar($id)
     {
         $sql = "SELECT * FROM autor WHERE id='$id'";
-        return ejecutarConsultaSimpleFila($sql);
+        return runQuerySimpleRow($sql);
     }
 }

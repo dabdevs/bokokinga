@@ -55,19 +55,32 @@ CREATE TABLE products
   AUTO_INCREMENT PRIMARY KEY,
 	name VARCHAR
   (100) NOT NULL,
-	description TEXT,
+	description TEXT DEFAULT NULL,
 	price DECIMAL
   (10,2) NOT NULL,
 	quantity INT NOT NULL,
   image1 VARCHAR(255) NOT NULL,
-  image2 VARCHAR(255) NOT NULL,
-  image3 VARCHAR(255) NOT NULL,
-  image4 VARCHAR(255) NOT NULL,
+  image2 VARCHAR(255) DEFAULT NULL,
+  image3 VARCHAR(255) DEFAULT NULL,
+  image4 VARCHAR(255) DEFAULT NULL,
 	category_id INT NOT NULL,
 	FOREIGN KEY
   (category_id) REFERENCES categories
   (id)
 );
+
+INSERT INTO products(name, price, quantity, image1, category_id)
+VALUES('Uñas acrílicas hojas verdes',12.99,50,'unas-hojas-verdes.jpg', 4),
+('Uñas Spider Amarrillo',8.99,15,'unas-spider-amarrillo.jpg', 4),
+('Uñas I love You Rojo',4.50,100,'unas-iloveu.jpg',4),
+('Necklace Oro Africa', 49.75,10,'necklace-oro-africa.jpg.jpg',2),
+('Jacket Verde Sun', 89.99,30,'jacket-verde-sun.jpg',3),
+('Lentes Aviator Marron', 12.99, 150,'lentes-aviator-marron.jpg',4),
+('Pañuelo No time for fake people', 4.99, 150,'panuelo-no-time-for-fake-people.jpg',3),
+('I dont smoke t-shirt', 20, 250,'i-dont-smoke-tshirt.jpg',3),
+('Anillo redondo piedra azul', 4.99, 215,'anillo-redondo-piedra-azul.jpg', 2),
+('Escalera apoya toalla', 46.99, 215,'escalera-apoya-toalla.jpg', 1),
+('Antique painting plate', 46.99, 215,'antique-painting-plate.jpg', 1);
 
         CREATE TABLE orders
         (
@@ -136,20 +149,17 @@ VALUES
               ('1234'), 1, 'user');
 
 
-  CREATE TABLE homemage
+  CREATE TABLE configurations
   (
-    logo VARCHAR(255) DEFAULT 'logo.jpg',
-    title VARCHAR(100) DEFAULT NULL,
-    subtitle VARCHAR(100) DEFAULT NULL,
-    banner VARCHAR(255) DEFAULT 'left-banner-image.jpg',
-    latest1 INT NOT NULL,
-    FOREIGN KEY (latest1) REFERENCES categories (id),
-    latest2 INT NOT NULL,
-    FOREIGN KEY (latest2) REFERENCES categories (id),
-    latest3 INT NOT NULL,
-    FOREIGN KEY (latest3) REFERENCES categories (id),
-    latest4 INT NOT NULL,
-    FOREIGN KEY (latest4) REFERENCES categories (id)
+    name VARCHAR(255) DEFAULT 'logo.jpg',
+    value VARCHAR(100) DEFAULT NULL,
+    active BOOLEAN DEFAULT 1
   );
+
+  INSERT INTO configurations(name, value)
+  VALUES('logo', 'logo.jpg'),
+        ('latest-row-1', 2), 
+        ('latest-row-2', 4),
+        ('latest-row-3', 1);
 
 

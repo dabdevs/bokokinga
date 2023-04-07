@@ -12,20 +12,20 @@ class Estudiante
     public function buscar($cedula)
     {
         $sql = "SELECT * FROM estudiante WHERE cedula='$cedula'";
-        return ejecutarConsultaSimpleFila($sql);
+        return runQuerySimpleRow($sql);
     }
 
     // Lista todos los estudiantes
     public function listar()
     {
         $sql = "SELECT * FROM estudiante";
-        return ejecutarConsulta($sql);
+        return runQuery($sql);
     }
 
     // Busca un estudiante por Id
     public function mostrar($cedula)
     {
         $sql = "SELECT * FROM estudiante WHERE cedula='$cedula'";
-        return ejecutarConsultaSimpleFila($sql);
+        return runQuerySimpleRow($sql);
     }
 }

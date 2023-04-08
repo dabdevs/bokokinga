@@ -1,3 +1,11 @@
+DROP DATABASE IF EXISTS `bokokinga`;
+
+CREATE DATABASE `bokokinga`;
+
+USE `bokokinga`;
+
+DROP TABLE IF EXISTS `users`;
+
 CREATE TABLE users (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   username VARCHAR (50) NOT NULL UNIQUE,
@@ -44,6 +52,8 @@ VALUES
     'ADMIN'
   );
 
+DROP TABLE IF EXISTS `categories`;
+
 CREATE TABLE categories (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR (150) UNIQUE NOT NULL,
@@ -61,6 +71,8 @@ VALUES
   (4,'Accesorios', 'Todo tipo de accesorios', 'accessories.jpg');
 
 
+DROP TABLE IF EXISTS `customers`;
+
 CREATE TABLE customers (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   firstname VARCHAR (50) NOT NULL,
@@ -68,6 +80,8 @@ CREATE TABLE customers (
   email VARCHAR (100) NOT NULL UNIQUE,
   password VARCHAR (100) NOT NULL
 );
+
+DROP TABLE IF EXISTS `products`;
 
 CREATE TABLE products (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -177,6 +191,8 @@ VALUES
     'metal'
   );
 
+DROP TABLE IF EXISTS `orders`;
+
 CREATE TABLE orders (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   customer_id INT NOT NULL,
@@ -184,6 +200,8 @@ CREATE TABLE orders (
   total_amount DECIMAL (10, 2) NOT NULL,
   FOREIGN KEY (customer_id) REFERENCES customers (id)
 );
+
+DROP TABLE IF EXISTS `order_item`;
 
 CREATE TABLE order_item (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -195,6 +213,8 @@ CREATE TABLE order_item (
   FOREIGN KEY (product_id) REFERENCES products (id)
 );
 
+DROP TABLE IF EXISTS `shopping_cart`;
+
 CREATE TABLE shopping_cart (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   customer_id INT NOT NULL,
@@ -205,6 +225,8 @@ CREATE TABLE shopping_cart (
   FOREIGN KEY (customer_id) REFERENCES customers (id),
   FOREIGN KEY (product_id) REFERENCES products (id)
 );
+
+DROP TABLE IF EXISTS `configurations`;
 
 CREATE TABLE configurations (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,

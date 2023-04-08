@@ -67,7 +67,7 @@ $data = getIndexData();
                                 <ul>
                                     <?php
                                     foreach ($categories as $category) { ?>
-                                        <li><a href="about.html"><?= $category->name ?></a></li>
+                                        <li><a href="<?= $category->url ?>"><?= $category->name ?></a></li>
                                     <?php } ?>
                                 </ul>
                             </li>
@@ -119,7 +119,7 @@ $data = getIndexData();
                                                     <h4><?= $category->name ?></h4>
                                                     <p><?= $category->description ?></p>
                                                     <div class="main-border-button">
-                                                        <a href="#">Ver más</a>
+                                                        <a href="<?= $category->url ?>">Ver más</a>
                                                     </div>
                                                 </div>
                                             </div>

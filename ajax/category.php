@@ -5,7 +5,6 @@ require_once "../modelos/category.php";
 function resizeImage($file, $target_dir, $max_width, $max_height) {
 	
 	$filename = $file['tmp_name'];
-	$target_dir .= '/resized/';
 
 	// Create the directory if it doesn't exist
 	if (!file_exists($target_dir)) {

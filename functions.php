@@ -44,6 +44,7 @@ function getIndexData()
     $sql_latest3 = "SELECT p.*, c.name as row_title, c.description as row_description FROM products p, categories c WHERE c.id = p.category_id AND category_id = " . $configurations[LATEST_PRODUCTS_CATEGORY_3];
     
     $data = array();
+    $data["configurations"] = $configurations;
 
     $latest_products_category_1 = runQuery($sql_latest1);
     $latest_products_category_2 = runQuery($sql_latest2);

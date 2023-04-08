@@ -53,13 +53,13 @@ $data = getIndexData();
                 <div class="col-12">
                     <nav class="main-nav">
                         <!-- ***** Logo Start ***** -->
-                        <a href="#" class="logo">
-                            <img src="public/assets/images/logo.png">
+                        <a href="/" class="logo">
+                            <img height="70" src="public/img/<?= $data['configurations']['logo'] ?>">
                         </a>
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
-                            <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
+                            <li class="scroll-to-section"><a href="/" class="active">Inicio</a></li>
                             <li class="submenu">
                                 <a href="javascript:;">Colecciones</a>
                                 <ul>

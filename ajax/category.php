@@ -2,31 +2,88 @@
 
 require_once "../modelos/category.php";
 
+function resizeImage($file, $target_dir, $max_width, $max_height) {
+	
+	$filename = $file['tmp_name'];
+	$target_dir .= '/resized/';
+
+	// Create the directory if it doesn't exist
+	if (!file_exists($target_dir)) {
+		mkdir($target_dir, 0777, true);
+	}
+
+	list($width, $height, $type) = getimagesize($filename);
+
+	// Calculate new dimensions while preserving aspect ratio
+	
+	$aspectRatio = $width / $height;
+	if ($aspectRatio > 1 && $width > $max_width) {
+		$new_width = $max_width;
+		$new_height = $max_width / $aspectRatio;
+	} elseif ($aspectRatio <= 1 && $height > $max_height) {
+		$new_height = $max_height;
+		$new_width = $max_height * $aspectRatio;
+	} else {
+		// Image is already smaller than max dimensions
+		$new_width = $max_width;
+		$new_height = $max_height;
+	}
+	
+	// var_dump($width, $height); die;
+	$image_p = imagecreatetruecolor((int)$new_width, (int)$new_height);
+	$image = imagecreatefromjpeg($filename);
+	imagecopyresampled($image_p, $image, 0, 0, 0, 0, (int)$new_width, (int)$new_height, (int)$width, (int)$height);
+
+	// Output
+	imagejpeg($image_p, $target_dir .'/'. $file['name']);
+	
+	return $file['name'];
+}
+
+function uploadFile($file, $target_dir, $width=null, $height=null) {
+	if ($file != "") {
+		return resizeImage($file, $target_dir, $width, $height);
+	}
+
+	return null;
+}
+
 $category = new Category();
 
 $id = isset($_POST["id"]) ? $_POST["id"] : "";
 $name = isset($_POST["name"]) ? $_POST["name"] : "";
 $description = isset($_POST["description"]) ? $_POST["description"] : "";
-$image = isset($_POST["image"]) ? $_POST["image"] : "";
+$image = isset($_FILES["image"]) ? $_FILES["image"] : "";
 
 switch ($_GET["op"]) {
 	case 'save':
-		$rspta = $category->insert($name, $description, $image);
-		if (intval($rspta) == 1) {
-			echo "Categoria Agregada";
-		}
-		if (intval($rspta) == 1062) {
-			echo "Codigo de Categoria Repetida";
+		$upload_dir = $_SERVER["DOCUMENT_ROOT"].CATEGORY_IMG_PATH;
+		$filename = uploadFile($image, $upload_dir, CATEGORY_IMAGE_WIDTH, CATEGORY_IMAGE_HEIGTH);
+
+		if ($filename != null) {
+			$rspta = $category->insert($name, $description, $filename);
+			if (intval($rspta) == 1) {
+				echo "Categoria Agregada";
+			}
+			if (intval($rspta) == 1062) {
+				echo "Codigo de Categoria Repetida";
+			}
 		}
 		break;
 
 	case 'edit':
-		$rspta = $category->edit($id, $name, $description, $image);
-		echo $rspta ? "Categoría actualizada" : "Categoría no se pudo actualizar";
+		$upload_dir = $_SERVER["DOCUMENT_ROOT"].CATEGORY_IMG_PATH;
+		$filename = uploadFile($image, $upload_dir, CATEGORY_IMAGE_WIDTH, CATEGORY_IMAGE_HEIGTH);
+		
+		// If the file was uploaded successfully
+		if ($filename != null) {
+			$rspta = $category->edit($id, $name, $description, $filename);
+			echo $rspta ? "Categoría actualizada" : "Categoría no se pudo actualizar";
+		}
 
 		break;
 
-	case 'eliminar':
+	case 'delete':
 		$rspta = $category->delete($id);
 		echo $rspta ? "Categoría eliminada" : "Categoría no se pudo eliminar";
 
@@ -59,3 +116,6 @@ switch ($_GET["op"]) {
 
 		break;
 }
+
+
+

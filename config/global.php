@@ -24,5 +24,7 @@ define("BANNER_SUBTITLE", "banner_subtitle");
 define("LATEST_ROW_1", "latest_row_1");
 define("LATEST_ROW_2", "latest_row_2");
 define("LATEST_ROW_3", "latest_row_3");
-
+define("CATEGORY_IMAGE_WIDTH", 385);
+define("CATEGORY_IMAGE_HEIGTH", 330);
+define("CATEGORY_IMG_PATH", "/public/img/categories")
 ?>

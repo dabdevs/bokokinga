@@ -130,7 +130,7 @@ VALUES
     'Necklace Oro Africa',
     49.75,
     10,
-    'necklace-oro-africa.jpg.jpg',
+    'necklace-oro-africa.jpg',
     2,
     'metal'
   ),

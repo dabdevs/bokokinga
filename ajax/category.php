@@ -35,6 +35,13 @@ function resizeImage($file, $target_dir, $max_width, $max_height) {
 
 	// Output
 	imagejpeg($image_p, $target_dir .'/'. $file['name']);
+
+
+	require("../modelos/S3.php");
+
+	$s3 = new S3();
+
+	$s3->putObject($file['name'], file_get_contents($file["tmp_name"]));
 	
 	return $file['name'];
 }

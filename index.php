@@ -5,6 +5,8 @@ require_once "./functions.php";
 
 $categories = getCategories();
 $data = getIndexData();
+
+
 ?>
 
 <!DOCTYPE html>

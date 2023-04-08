@@ -206,6 +206,7 @@ CREATE TABLE shopping_cart (
 );
 
 CREATE TABLE configurations (
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(100) UNIQUE NOT NULL,
   value VARCHAR(100) DEFAULT NULL,
   active BOOLEAN DEFAULT 1
@@ -217,6 +218,6 @@ VALUES
 ('logo', 'logo.png'),
 ('banner_title', 'Bokokinga'),
 ('banner_subtitle', 'Tu eslogan!'),
-('latest_products_category_1', 0), /* Configuration to display latest products from a specific category on first row. The value is the id of the category to filter the products from. */
-('latest_products_category_2', 0), /* Configuration to display latest products from a specific category on second row. The value is the id of the category to filter the products from. */
-('latest_products_category_3', 0); /* Configuration to display latest products from a specific category on third row. The value is the id of the category to filter the products from. */
+('latest_products_category_1', 1), /* Configuration to display latest products from a specific category on first row. The value is the id of the category to filter the products from. */
+('latest_products_category_2', 2), /* Configuration to display latest products from a specific category on second row. The value is the id of the category to filter the products from. */
+('latest_products_category_3', 3); /* Configuration to display latest products from a specific category on third row. The value is the id of the category to filter the products from. */

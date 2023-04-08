@@ -294,7 +294,7 @@ include './includes/layout.php';
         });
     }
 
-    function mostrar(id) {
+    function show(id) {
         habilitar_botones();
         document.getElementById("listadoregistros").style.display = "none";
         $.ajax({

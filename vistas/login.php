@@ -6,7 +6,7 @@ $title = 'Login';
 
 session_start();
 
-if (isset($_SESSION["id"])) {
+if (isset($_SESSION["user"])) {
     header("Location: dashboard.php");
 }
 ?>

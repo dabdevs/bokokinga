@@ -7,7 +7,7 @@
         </div>
         <div class="publico m-0">
             <a href="./dashboard.php"><i class='bx bx-home'></i><span>Dashboard</span></a>
-            <a href="./categoria.php" id="categoria"><i class='bx bx-category'></i><span>Categoría</span></a>
+            <a href="./category.php" id="categoria"><i class='bx bx-category'></i><span>Categoría</span></a>
             <a href="./libro.php" id="libro"><i class='bx bx-book'></i><span>Libro</span></a>
             <a href="./detalle.php" id="prestamo"><i class='bx bxs-dollar-circle'></i><span>Préstamo</span></a>
             <a href="#" class="es-padre es-modulo" id="modulo"><i class='bx bx-category'></i><span>Módulo padre</span></a>

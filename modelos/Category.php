@@ -1,6 +1,6 @@
 <?php
 //Incluímos inicialmente la conexión a la base de datos
-require "../config/Conexion.php";
+require "../config/Connection.php";
 
 class Category
 {
@@ -9,43 +9,43 @@ class Category
 	{
 	}
 
-	//Implementamos un método para insertar registros
-	public function insertar($id, $nombre)
+	// Insert new data
+	public function insert($name, $description, $image)
 	{
 		try {
-			$sql = "INSERT INTO category (id, nombre)
-        VALUES ('$id','$nombre')";
+			$sql = "INSERT INTO categories (name,description,image)
+        VALUES ('$name','$description','$image')";
 			return runQuery($sql);
 		} catch (Exception $e) {
-			return $e->getCode(); // Devuelve el código de error de la excepción
+			return $e->getCode();
 		}
 	}
 
-	//Implementamos un método para editar registros
-	public function editar($id, $nombre)
+	// Edit existing data
+	public function edit($id, $name, $description, $image)
 	{
-		$sql = "UPDATE category SET id='$id', nombre='$nombre' WHERE id='$id'";
+		$sql = "UPDATE categories SET name='$name', description='$description', image='$image' WHERE id='$id'";
 		return runQuery($sql);
 	}
 
-	//Implementamos un método para eliminar registros
-	public function eliminar($id)
+	// Delete existing data
+	public function delete($id)
 	{
-		$sql = "DELETE FROM category WHERE id='$id'";
+		$sql = "DELETE FROM categories WHERE id='$id'";
 		return runQuery($sql);
 	}
 
-	//Implementar un método para mostrar los datos de un registro a modificar
-	public function mostrar($id)
+	// Show specific data
+	public function show($id)
 	{
-		$sql = "SELECT * FROM category WHERE id='$id'";
+		$sql = "SELECT * FROM categories WHERE id='$id'";
 		return runQuerySimpleRow($sql);
 	}
 
-	//Implementar un método para listar los registros
+	// List all data
 	public function list()
 	{
-		$sql = "SELECT * FROM category";
+		$sql = "SELECT * FROM categories";
 		return runQuery($sql);
 	}
 }

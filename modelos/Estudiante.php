@@ -1,6 +1,6 @@
 <?php
-//Incluímos inicialmente la conexión a la base de datos
-require "../config/Conexion.php";
+// Database connection
+require "../config/Connection.php";
 
 class Estudiante
 {
@@ -23,7 +23,7 @@ class Estudiante
     }
 
     // Busca un estudiante por Id
-    public function mostrar($cedula)
+    public function show($cedula)
     {
         $sql = "SELECT * FROM estudiante WHERE cedula='$cedula'";
         return runQuerySimpleRow($sql);

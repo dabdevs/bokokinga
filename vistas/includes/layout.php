@@ -1,13 +1,16 @@
 <?php
 session_start();
 
-if (!isset($_SESSION["id"])) {
+
+
+if (!isset($_SESSION["user"])) {
     header("Location: login.php");
 } else {
-    $user_id = isset($_SESSION["id"]) ? $_SESSION["id"] : null;
-    $nombre = isset($_SESSION["nombre"]) ? $_SESSION["nombre"] : null;
-    $apellido = isset($_SESSION["apellido"]) ? $_SESSION["apellido"] : null;
-    $email = isset($_SESSION["email"]) ? $_SESSION["email"] : null;
+    $user_id = $_SESSION["user"]->id;
+    $firstname = $_SESSION["user"]->firstname;
+    $lastname = $_SESSION["user"]->lastname;
+    $username = $_SESSION["user"]->username;
+    $email = $_SESSION["user"]->email;
 }
 ?>
 

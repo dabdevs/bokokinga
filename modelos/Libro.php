@@ -1,16 +1,16 @@
 <?php
-//Incluímos inicialmente la conexión a la base de datos
-require "../config/Conexion.php";
+// Database connection
+require "../config/Connection.php";
 
 class Libro
 {
-    //Implementamos nuestro constructor
+    // Constructor
     public function __construct()
     {
     }
 
-    //Implementamos un método para insertar registros
-    public function insertar($cod_libro, $titulo, $genero, $autor_id)
+    // Create new data
+    public function insert($cod_libro, $titulo, $genero, $autor_id)
     {
         try {
             $sql_check = "SELECT titulo FROM libro where titulo = '$titulo' OR codigo = '$cod_libro'";
@@ -24,12 +24,12 @@ class Libro
                 return runQuery($sql);
             }
         } catch (Exception $e) {
-            return $e->getCode(); // Devuelve el código de error de la excepción
+            return $e->getCode();
         }
     }
 
-    //Implementamos un método para editar registros
-    public function editar($id, $cod_libro, $titulo, $genero, $autor_id)
+    // Edit data
+    public function edit($id, $cod_libro, $titulo, $genero, $autor_id)
     {
         $sql_check = "SELECT id, titulo, codigo FROM libro WHERE titulo = '$titulo'";
         $res_check = runQuery($sql_check);
@@ -42,21 +42,21 @@ class Libro
         }
     }
 
-    //Implementamos un método para eliminar registros
-    public function eliminar($id)
+    // Delete data
+    public function delete($id)
     {
         $sql = "DELETE FROM libro WHERE id='$id'";
         return runQuery($sql);
     }
 
-    //Implementar un método para mostrar los datos de un registro a modificar
-    public function mostrar($cod_libro)
+    // Show data
+    public function show($cod_libro)
     {
         $sql = "SELECT * FROM libro WHERE codigo='$cod_libro'";
         return runQuerySimpleRow($sql);
     }
 
-    //Implementar un método para listar los registros
+    // List data
     public function listar()
     {
         $sql = "SELECT l.id, l.codigo, l.titulo, l.genero, a.nombre as autor FROM libro l join autor a on l.autor_id = a.id";

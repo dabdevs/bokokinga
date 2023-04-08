@@ -37,7 +37,7 @@ switch ($_GET["op"]) {
         break;
 
     case 'mostrar':
-        $rspta = $estudiante->mostrar($cedula);
+        $rspta = $estudiante->show($cedula);
         //Codificar el resultado utilizando json
         echo json_encode($rspta);
         break;

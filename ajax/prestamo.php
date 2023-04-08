@@ -15,7 +15,7 @@ $fechaEstudiante = isset($_POST["fechaEstudiante"]) ? $_POST["fechaEstudiante"] 
 
 switch ($_GET["op"]) {
     case 'guardar':
-        $rspta = $prestamo->insertar($cod_libro, $titulo, $cedula, $nombreEstudiante, $fechaLibro, $fechaEstudiante);
+        $rspta = $prestamo->insert($cod_libro, $titulo, $cedula, $nombreEstudiante, $fechaLibro, $fechaEstudiante);
         if (intval($rspta) == 1) {
             echo "Prestamo Agregado";
         }
@@ -25,7 +25,7 @@ switch ($_GET["op"]) {
         break;
 
     case 'editar':
-        $rspta = $prestamo->editar($id, $detalle_id, $cod_libro, $titulo, $cedula, $nombreEstudiante, $fechaLibro, $fechaEstudiante);
+        $rspta = $prestamo->edit($id, $detalle_id, $cod_libro, $titulo, $cedula, $nombreEstudiante, $fechaLibro, $fechaEstudiante);
 
         if (intval($rspta) == 1062) {
             echo "Prestamo ya existe";
@@ -36,13 +36,13 @@ switch ($_GET["op"]) {
         break;
 
     case 'eliminar':
-        $rspta = $prestamo->eliminar($id);
+        $rspta = $prestamo->delete($id);
         echo $rspta ? "Prestamo eliminado" : "Prestamo no se pudo eliminar";
 
         break;
 
     case 'mostrar':
-        $rspta = $prestamo->mostrar($id);
+        $rspta = $prestamo->show($id);
 
         //Codificar el resultado utilizando json
         echo json_encode($rspta);
@@ -60,7 +60,7 @@ switch ($_GET["op"]) {
                 "2" => $reg->nombre,
                 "3" => $reg->titulo,
                 "4" => $reg->fecha,
-                "5" => '<button class="btn btn-primary" onclick="mostrar(\'' . $reg->idprestamo . '\')"><i class="bx bx-search"></i>&nbsp;Seleccionar</button>'
+                "5" => '<button class="btn btn-primary" onclick="show(\'' . $reg->idprestamo . '\')"><i class="bx bx-search"></i>&nbsp;Seleccionar</button>'
             );
         }
         $results = array(

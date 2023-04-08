@@ -13,7 +13,7 @@ $cod_autor = isset($_POST["cod_autor"]) ? $_POST["cod_autor"] : "";
 
 switch ($_GET["op"]) {
     case 'guardar':
-        $rspta = $libro->insertar($cod_libro, $titulo, $genero, $autor_id);
+        $rspta = $libro->insert($cod_libro, $titulo, $genero, $autor_id);
         if (intval($rspta) == 1) {
             echo "Libro Agregado";
         }
@@ -23,8 +23,8 @@ switch ($_GET["op"]) {
         break;
 
     case 'editar':
-        $rspta = $libro->editar($id, $cod_libro, $titulo, $genero, $autor_id);
-       
+        $rspta = $libro->edit($id, $cod_libro, $titulo, $genero, $autor_id);
+
         if (intval($rspta) == 1062) {
             echo "Libro ya existe";
         } else {
@@ -34,14 +34,14 @@ switch ($_GET["op"]) {
         break;
 
     case 'eliminar':
-        $rspta = $libro->eliminar($id);
+        $rspta = $libro->delete($id);
         echo $rspta ? "Libro eliminado" : "Libro no se pudo eliminar";
 
         break;
 
     case 'mostrar':
-        $rspta = $libro->mostrar($cod_libro);
-        
+        $rspta = $libro->show($cod_libro);
+
         //Codificar el resultado utilizando json
         echo json_encode($rspta);
         break;
@@ -72,7 +72,7 @@ switch ($_GET["op"]) {
         break;
 
     case 'buscar_autor':
-        $rspta = $libro->buscar_autor($cod_autor); 
+        $rspta = $libro->buscar_autor($cod_autor);
         //Codificar el resultado utilizando json
         echo json_encode($rspta->fetch_assoc());
         break;

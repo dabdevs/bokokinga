@@ -1,10 +1,10 @@
 <?php
-//Incluímos inicialmente la conexión a la base de datos
-require "../config/Conexion.php";
+// Database connection
+require "../config/Connection.php";
 
 class Prestamo
 {
-    //Implementamos nuestro constructor
+    // Constructor
     public function __construct()
     {
     }
@@ -21,8 +21,8 @@ class Prestamo
         return runQuery($sql);
     }
 
-    //Implementamos un método para insertar registros
-    public function insertar($cod_libro, $titulo, $cedula, $nombreEstudiante, $fechaLibro, $fechaEstudiante)
+    // Create new data
+    public function insert($cod_libro, $titulo, $cedula, $nombreEstudiante, $fechaLibro, $fechaEstudiante)
     {
         try {
             global $conexion;
@@ -33,7 +33,7 @@ class Prestamo
             return $res;
         } catch (Exception $e) {
             $conexion->rollback();
-            return $e->getCode(); // Devuelve el código de error de la excepción
+            return $e->getCode();
         }
     }
 
@@ -49,8 +49,8 @@ class Prestamo
         return runQuery($sql);
     }
 
-    //Implementamos un método para editar registros
-    public function editar($id, $detalle_id, $cod_libro, $titulo, $cedula, $nombreEstudiante, $fechaLibro, $fechaEstudiante)
+    // Edit data
+    public function edit($id, $detalle_id, $cod_libro, $titulo, $cedula, $nombreEstudiante, $fechaLibro, $fechaEstudiante)
     {
         try {
             global $conexion;
@@ -61,12 +61,12 @@ class Prestamo
             return $res;
         } catch (Exception $e) {
             $conexion->rollback();
-            return $e->getCode(); // Devuelve el código de error de la excepción
+            return $e->getCode();
         }
     }
 
-    //Implementamos un método para eliminar registros
-    public function eliminar($id)
+    // Delete data
+    public function delete($id)
     {
         try {
             global $conexion;
@@ -82,18 +82,18 @@ class Prestamo
             return $res;
         } catch (Exception $e) {
             $conexion->rollback();
-            return $e->getCode(); // Devuelve el código de error de la excepción
+            return $e->getCode();
         }
     }
 
-    //Implementar un método para mostrar los datos de un registro a modificar
-    public function mostrar($id)
+    // Show data
+    public function show($id)
     {
         $sql = "SELECT ep.idprestamo, ep.cedula, ep.nombre, DATE_FORMAT(ep.fecha, '%Y-%m-%d') as fechaEstudiante, dp.iddetalle, dp.codigo, dp.nombre, DATE_FORMAT(dp.fecha, '%Y-%m-%d') as fechaLibro FROM encabezadoprestamo ep JOIN detalleprestamo dp ON dp.idprestamo = ep.idprestamo WHERE ep.idprestamo='$id'";
         return runQuerySimpleRow($sql);
     }
 
-    //Implementar un método para listar los registros
+    // List data
     public function listar()
     {
         $sql = "SELECT ep.idprestamo, ep.cedula, ep.nombre, ep.fecha as estudianteFecha, dp.nombre as titulo, dp.fecha FROM encabezadoprestamo ep JOIN detalleprestamo dp ON dp.idprestamo = ep.idprestamo";

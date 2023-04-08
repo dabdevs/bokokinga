@@ -50,8 +50,8 @@ ob_start();
     <div class="row p-3">
         <button type="button" class="col mr-1 btn btn-success" id="Agregar" onclick="agregar()">Agregar</button>
         <button type="button" class="col mr-1 btn btn-primary" id="Listar" onclick="listar()">Buscar</button>
-        <button type="button" class="col mr-1 btn btn-warning" id="Editar" onclick="editar()" disabled>Editar</button>
-        <button type="button" class="col mr-1 btn btn-danger" id="Eliminar" onclick="eliminar()" disabled>Eliminar</button>
+        <button type="button" class="col mr-1 btn btn-warning" id="Editar" onclick="edit()" disabled>Editar</button>
+        <button type="button" class="col mr-1 btn btn-danger" id="Eliminar" onclick="delete()" disabled>Eliminar</button>
         <button type="button" class="col mr-1 btn btn-secondary" id="Limpiar" onclick="limpiar()">Limpiar</button>
     </div>
 </div>
@@ -146,7 +146,7 @@ include './includes/layout.php';
         }
     }
 
-    function eliminar() {
+    function delete() {
         var id = $("#libro_id").val();
 
         $.ajax({
@@ -163,7 +163,7 @@ include './includes/layout.php';
         });
     }
 
-    function editar() {
+    function edit() {
         var id = $("#libro_id").val();
         var cod_libro = $("#cod_libro").val().trim();
         var titulo = $("#titulo").val().trim();
@@ -206,7 +206,7 @@ include './includes/layout.php';
         });
     }
 
-    function mostrar(id) {
+    function show(id) {
         habilitar_botones();
         document.getElementById("listadoregistros").style.display = "none";
         $.ajax({

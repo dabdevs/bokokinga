@@ -1,14 +1,14 @@
 <?php
-//Incluímos inicialmente la conexión a la base de datos
-require "../config/Conexion.php";
+// Database connection
+require "../config/Connection.php";
 
 class Datos
 {
-    //Implementamos nuestro constructor
+    // Constructor
     public function __construct()
     {
     }
-    //Implementamos un método para insertar registros del encabezado
+    // Create new data del encabezado
     public function insertarencabezado($cedula, $nombre, $fecha)
     {
         try {
@@ -16,11 +16,11 @@ class Datos
         VALUES ('$cedula','$nombre','$fecha')";
             return runQuery($sql);
         } catch (Exception $e) {
-            return $e->getCode(); // Devuelve el código de error de la excepción
+            return $e->getCode();
         }
     }
 
-    //Implementamos un método para insertar registros del datatable
+    // Create new data del datatable
     public function insertardetalle($codigo, $nombre, $fecha, $idprestamo)
     {
         try {
@@ -28,11 +28,11 @@ class Datos
         VALUES ('$codigo','$nombre','$fecha', '$idprestamo')";
             return runQuery($sql);
         } catch (Exception $e) {
-            return $e->getCode(); // Devuelve el código de error de la excepción
+            return $e->getCode();
         }
     }
 
-    //Implementar un método para mostrar los datos de un registro a modificar
+    // Show data
     public function Obtenerid()
     {
         $sql = "SELECT max(idprestamo) as idprestamo FROM encabezadoprestamo";

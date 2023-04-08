@@ -1,16 +1,16 @@
 <?php
-//Incluímos inicialmente la conexión a la base de datos
-require "../config/Conexion.php";
+// Database connection
+require "../config/Connection.php";
 
 class Autor
 {
-    //Implementamos nuestro constructor
+    // Constructor
     public function __construct()
     {
     }
 
-    //Implementar un método para mostrar los datos de un registro a modificar
-    public function mostrar($id)
+    // Show data
+    public function show($id)
     {
         $sql = "SELECT * FROM autor WHERE id='$id'";
         return runQuerySimpleRow($sql);

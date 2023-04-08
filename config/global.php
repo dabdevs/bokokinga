@@ -16,4 +16,13 @@ define("DB_ENCODE", "utf8");
 
 //Definimos una constante como nombre del proyecto
 define("PRO_NOMBRE", "ITVentas");
+
+// CONFIGURATIONS
+define("LOGO", "logo");
+define("BANNER_TITLE", "banner_title");
+define("BANNER_SUBTITLE", "banner_subtitle");
+define("LATEST_ROW_1", "latest_row_1");
+define("LATEST_ROW_2", "latest_row_2");
+define("LATEST_ROW_3", "latest_row_3");
+
 ?>

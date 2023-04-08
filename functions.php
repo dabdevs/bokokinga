@@ -1,5 +1,5 @@
 <?php
-require "./config/Conexion.php";
+require "./config/Connection.php";
 
 function getCategories()
 {

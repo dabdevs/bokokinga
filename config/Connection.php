@@ -11,7 +11,7 @@ if (mysqli_connect_errno()) {
 	exit();
 }
 
-if (!function_exists('runQuery')) {
+if (!function_exists('ejecutarConsulta')) {
 	function runQuery($sql)
 	{
 		global $conexion;
@@ -27,14 +27,14 @@ if (!function_exists('runQuery')) {
 		return $row;
 	}
 
-	function runQueryReturnID($sql)
+	function runQueryReturnId($sql)
 	{
 		global $conexion;
-		$query = $conexion->query($sql);
+		$conexion->query($sql);
 		return $conexion->insert_id;
 	}
 
-	function limpiarCadena($str)
+	function escapeString($str)
 	{
 		global $conexion;
 		$str = mysqli_real_escape_string($conexion, trim($str));

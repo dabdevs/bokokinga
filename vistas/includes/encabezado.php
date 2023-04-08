@@ -13,8 +13,8 @@
     if ($user_id != null) { ?>
         <div class="btn-group dropleft">
             <a class="btn btn-danger d-none d-md-block dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                <?= $nombre; ?>
-                <?= $apellido; ?>
+                <?= $firstname; ?>
+                <?= $lastname; ?>
             </a>
             <div class="dropdown-menu">
                 <!-- Dropdown menu links -->

@@ -1,18 +1,18 @@
 <?php
-//Incluímos inicialmente la conexión a la base de datos
-require "../config/Conexion.php";
+// Database connection
+require "../config/Connection.php";
 
 class User
 {
-    //Implementamos nuestro constructor
+    // Constructor
     public function __construct()
     {
     }
 
     // Autenticate the user
-    public function authenticate($email, $password)
+    public function authenticateAdmin($email, $password)
     {
-        $sql = "SELECT id, email, nombre, apellido FROM user WHERE email='$email' AND password = '$password'";
+        $sql = "SELECT * FROM users WHERE email='$email' AND password = '$password' and role = 'ADMIN'";
         return runQuerySimpleRow($sql);
     }
 }

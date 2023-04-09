@@ -1,8 +1,3 @@
-<?php
-    require_once "./functions.php";
-    $categories = getCategories();
-    $configurations = getConfigurations();
-?>
 <!-- ***** Preloader Start ***** -->
 <div id="preloader">
     <div class="jumper">
@@ -32,7 +27,7 @@
                             <a href="javascript:;">Colecciones</a>
                             <ul>
                                 <?php
-                                foreach ($categories as $category) { ?>
+                                foreach ($collections as $category) { ?>
                                     <li><a href="collection.php?name=<?= $category->name ?>"><?= $category->name ?></a></li>
                                 <?php } ?>
                             </ul>

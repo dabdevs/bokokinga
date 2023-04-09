@@ -1,3 +1,8 @@
+<?php
+    require_once "./functions.php";
+    $configurations = getConfigurations();
+    $collections = getCollections();
+?>
 <!DOCTYPE html>
 <html lang="en">
 

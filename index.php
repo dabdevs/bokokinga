@@ -1,19 +1,16 @@
 <?php
 
-require_once "./functions.php";
-$categories = getCategories();
-$data = getIndexData();
+    require_once "./functions.php";
+    $title = "Bokokinga";
+    $collections = getCollections();
+    $data = getIndexData();
 
-ob_start();
-$title = "Bokokinga";
-?>
+    ob_start();
 
-<?php include('includes/index/banner.php'); ?>
-<?php include('includes/index/collections.php'); ?>
-<?php include('includes/index/socials.php'); ?>
-<?php include('includes/subscribe.php'); ?>
+    include('includes/index/banner.php'); 
+    include('includes/index/collections.php'); 
+    include('includes/index/socials.php'); 
+    include('includes/subscribe.php'); 
 
-<?php
-$content = ob_get_clean();
-include './includes/layout.php';
-?>
+    $content = ob_get_clean();
+    include './includes/layout.php';

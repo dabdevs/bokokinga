@@ -1,4 +1,7 @@
 <?php
+
+namespace Bokokinga\Modelos;
+
 //Incluímos inicialmente la conexión a la base de datos
 require "../config/Connection.php";
 

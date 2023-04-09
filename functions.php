@@ -1,15 +1,18 @@
 <?php
+
 require "./config/Connection.php";
 
-function getCategories()
+function getCollections()
 {
+    if (isset($_COOKIE['collections']))
+        return unserialize($_COOKIE['collections']);
 
     $sql = "SELECT * FROM categories";
-    $categories =  runQuery($sql);
+    $collections =  runQuery($sql);
 
     $data = array();
 
-    while ($reg = $categories->fetch_object()) {
+    while ($reg = $collections->fetch_object()) {
         $data[] = (object)[
             "id" => $reg->id,
             "name" => $reg->name,
@@ -18,13 +21,15 @@ function getCategories()
         ];
     }
 
+    setcookie('collections', serialize($data), time() + 3600, '/');
+
     return $data;
 }
 
 function getConfigurations()
 {
     $sql = "SELECT * FROM configurations";
-    $configurations =  runQuery($sql);
+    $configurations = runQuery($sql);
 
     $data = array();
 
@@ -42,20 +47,20 @@ function getCollection($name)
                 JOIN categories c ON p.category_id = c.id 
                 WHERE c.name = '$name'";
 
-    $total_products =  runQuery($sql_total); 
+    $total_products =  runQuery($sql_total);
     $total_records = $total_products->num_rows;
 
     $total_pages = ceil($total_records / RECORDS_PER_PAGE);
     $current_page = isset($_GET['page']) && $_GET['page'] != "" ? $_GET['page'] : 1;
-    
+
     $offset = ($current_page - 1) * RECORDS_PER_PAGE;
 
     $sql_per_page = $sql_total . " LIMIT $offset, " . RECORDS_PER_PAGE;
-    
+
     $collection = runQuery($sql_per_page);
 
     $links = '';
-    $uri = 'collection.php?name='. $_GET['name'];
+    $uri = 'collection.php?name=' . $_GET['name'];
 
     for ($i = 1; $i <= $total_pages; $i++) {
         $links .= "<li><a href='$uri&page=$i'>$i</a></li>";
@@ -64,7 +69,7 @@ function getCollection($name)
     $data = array();
     $data["collection_description"] = $total_products->fetch_assoc()["collection_description"];
     $data["products"] = array();
-    
+
     while ($reg = $collection->fetch_object()) {
         $data["products"][] = (object)[
             "c_description" => $reg->collection_description,
@@ -78,7 +83,7 @@ function getCollection($name)
     }
 
     $data["links"] = $links;
-    
+
     return $data;
 }
 
@@ -89,7 +94,7 @@ function getIndexData()
     $sql_latest1 = "SELECT p.*, c.name as row_title, c.description as row_description FROM products p, categories c WHERE c.id = p.category_id AND category_id = " . $configurations[LATEST_PRODUCTS_CATEGORY_1];
     $sql_latest2 = "SELECT p.*, c.name as row_title, c.description as row_description FROM products p, categories c WHERE c.id = p.category_id AND category_id = " . $configurations[LATEST_PRODUCTS_CATEGORY_2];
     $sql_latest3 = "SELECT p.*, c.name as row_title, c.description as row_description FROM products p, categories c WHERE c.id = p.category_id AND category_id = " . $configurations[LATEST_PRODUCTS_CATEGORY_3];
-    
+
     $data = array();
     $data["configurations"] = $configurations;
 
@@ -118,6 +123,8 @@ function getIndexData()
         $data["latest_products_category_3"]->title = $reg["row_title"];
         $data["latest_products_category_3"]->description = $reg["row_description"];
     }
+
+    setcookie('home_data', serialize($data), time() + 3600, '/');
 
     return $data;
 }

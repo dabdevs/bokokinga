@@ -20,24 +20,24 @@
                 <div class="right-content">
                     <div class="row">
                         <?php
-                        foreach ($categories as $category) { ?>
+                        foreach ($collections as $collection) { ?>
                             <div class="col-lg-6">
                                 <div class="right-first-image">
                                     <div class="thumb">
                                         <div class="inner-content">
-                                            <h4><?= $category->name ?></h4>
-                                            <span><?= $category->description ?></span>
+                                            <h4><?= $collection->name ?></h4>
+                                            <span><?= $collection->description ?></span>
                                         </div>
                                         <div class="hover-content">
                                             <div class="inner">
-                                                <h4><?= $category->name ?></h4>
-                                                <p><?= $category->description ?></p>
+                                                <h4><?= $collection->name ?></h4>
+                                                <p><?= $collection->description ?></p>
                                                 <div class="main-border-button">
-                                                    <a href="collection.php?name=<?= str_replace(' ', '-', $category->name) ?>">Ver más</a>
+                                                    <a href="collection.php?name=<?= str_replace(' ', '-', $collection->name) ?>">Ver más</a>
                                                 </div>
                                             </div>
                                         </div>
-                                        <img src="public/img/categories/<?= $category->image ?>">
+                                        <img src="public/img/categories/<?= $collection->image ?>">
                                     </div>
                                 </div>
                             </div>

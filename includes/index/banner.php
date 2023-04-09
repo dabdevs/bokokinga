@@ -33,7 +33,7 @@
                                                 <h4><?= $category->name ?></h4>
                                                 <p><?= $category->description ?></p>
                                                 <div class="main-border-button">
-                                                    <a href="collection.php?name=<?= str_replace(' ', '-', $category->name) ?>&c=<?= $category->id ?>">Ver más</a>
+                                                    <a href="collection.php?name=<?= str_replace(' ', '-', $category->name) ?>">Ver más</a>
                                                 </div>
                                             </div>
                                         </div>

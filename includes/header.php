@@ -33,7 +33,7 @@
                             <ul>
                                 <?php
                                 foreach ($categories as $category) { ?>
-                                    <li><a href="<?= $category->url ?>"><?= $category->name ?></a></li>
+                                    <li><a href="collection.php?name=<?= $category->name ?>"><?= $category->name ?></a></li>
                                 <?php } ?>
                             </ul>
                         </li>

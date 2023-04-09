@@ -5,7 +5,7 @@
             <div class="col-lg-12">
                 <div class="inner-content">
                     <h2><?= str_replace("-", " ", $title) ?></h2>
-                    <span><?= $collection[0]->c_description ?> </span>
+                    <span><?= $collection["collection_description"] ?> </span>
                 </div>
             </div>
         </div>

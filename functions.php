@@ -7,6 +7,8 @@ function getCategories()
     $sql = "SELECT * FROM categories";
     $categories =  runQuery($sql);
 
+    $data = array();
+
     while ($reg = $categories->fetch_object()) {
         $data[] = (object)[
             "id" => $reg->id,
@@ -35,15 +37,36 @@ function getConfigurations()
 
 function getCollection($name)
 {
+    // Get total of records
+    $sql_total = "SELECT c.description as collection_description, p.* FROM products p
+                JOIN categories c ON p.category_id = c.id 
+                WHERE c.name = '$name'";
+
+    $total_products =  runQuery($sql_total); 
+    $total_records = $total_products->num_rows;
+
+    $total_pages = ceil($total_records / RECORDS_PER_PAGE);
+    $current_page = isset($_GET['page']) && $_GET['page'] != "" ? $_GET['page'] : 1;
     
-    $sql = "SELECT c.description as collection_description, p.* FROM products p
-            JOIN categories c ON p.category_id = c.id 
-            WHERE c.name = '$name'";
+    $offset = ($current_page - 1) * RECORDS_PER_PAGE;
 
-    $collection =  runQuery($sql);
+    $sql_per_page = $sql_total . " LIMIT $offset, " . RECORDS_PER_PAGE;
+    
+    $collection = runQuery($sql_per_page);
 
+    $links = '';
+    $uri = 'collection.php?name='. $_GET['name'];
+
+    for ($i = 1; $i <= $total_pages; $i++) {
+        $links .= "<li><a href='$uri&page=$i'>$i</a></li>";
+    }
+
+    $data = array();
+    $data["collection_description"] = $total_products->fetch_assoc()["collection_description"];
+    $data["products"] = array();
+    
     while ($reg = $collection->fetch_object()) {
-        $data[] = (object)[
+        $data["products"][] = (object)[
             "c_description" => $reg->collection_description,
             "id" => $reg->id,
             "name" => $reg->name,
@@ -53,6 +76,8 @@ function getCollection($name)
             "slug" => $reg->slug
         ];
     }
+
+    $data["links"] = $links;
     
     return $data;
 }

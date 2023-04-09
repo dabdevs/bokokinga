@@ -126,32 +126,9 @@
                     <div class="kid-item-carousel">
                         <div class="owl-kid-item owl-carousel">
                             <?php
-                            foreach ($data["latest_products_category_3"]->products as $product) { ?>
-
-                                <div class="item">
-                                    <div class="thumb">
-                                        <div class="hover-content">
-                                            <ul>
-                                                <li><a href="single-product.html"><i class="fa fa-eye"></i></a></li>
-                                                <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                                <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <img src="public/img/products/<?= $product->image1 ?>" alt="">
-                                    </div>
-                                    <div class="down-content">
-                                        <h4><?= $product->name ?></h4>
-                                        <span><?= $product->price ?></span>
-                                        <ul class="stars d-none">
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            <?php } ?>
+                            foreach ($data["latest_products_category_3"]->products as $product) { 
+                                include("./includes/product_card.php");
+                            } ?>
                         </div>
                     </div>
                 </div>

@@ -1,16 +1,17 @@
 <?php
+
 require_once "./functions.php";
-ob_start();
-
-$title = "Bokokinga";
-
 $categories = getCategories();
 $data = getIndexData();
 
+ob_start();
+$title = "Bokokinga";
 ?>
 
-<?php include('includes/banner.php'); ?>
-<?php include('includes/collections.php'); ?>
+<?php include('includes/index/banner.php'); ?>
+<?php include('includes/index/collections.php'); ?>
+<?php include('includes/index/socials.php'); ?>
+<?php include('includes/subscribe.php'); ?>
 
 <?php
 $content = ob_get_clean();

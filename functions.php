@@ -7,8 +7,6 @@ function getCategories()
     $sql = "SELECT * FROM categories";
     $categories =  runQuery($sql);
 
-    $data = array();
-
     while ($reg = $categories->fetch_object()) {
         $data[] = (object)[
             "id" => $reg->id,
@@ -32,6 +30,30 @@ function getConfigurations()
         $data[$reg->name] = $reg->value;
     }
 
+    return $data;
+}
+
+function getCollection($name)
+{
+    
+    $sql = "SELECT c.description as collection_description, p.* FROM products p
+            JOIN categories c ON p.category_id = c.id 
+            WHERE c.name = '$name'";
+
+    $collection =  runQuery($sql);
+
+    while ($reg = $collection->fetch_object()) {
+        $data[] = (object)[
+            "c_description" => $reg->collection_description,
+            "id" => $reg->id,
+            "name" => $reg->name,
+            "image1" => $reg->image1,
+            "p_description" => $reg->description,
+            "price" => $reg->price,
+            "slug" => $reg->slug
+        ];
+    }
+    
     return $data;
 }
 

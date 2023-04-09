@@ -1,3 +1,8 @@
+<?php
+    require_once "./functions.php";
+    $categories = getCategories();
+    $configurations = getConfigurations();
+?>
 <!-- ***** Preloader Start ***** -->
 <div id="preloader">
     <div class="jumper">
@@ -17,7 +22,7 @@
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
                     <a href="/" class="logo">
-                        <img height="70" src="public/img/<?= $data['configurations']['logo'] ?>">
+                        <img height="70" src="public/img/<?= $configurations['logo'] ?>">
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->

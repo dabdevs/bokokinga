@@ -93,9 +93,9 @@ function getIndexData()
 {
     $configurations = getConfigurations();
 
-    $sql_latest1 = "SELECT p.*, c.name as row_title, c.description as row_description FROM products p, categories c WHERE c.id = p.category_id AND category_id = " . $configurations[LATEST_PRODUCTS_CATEGORY_1];
-    $sql_latest2 = "SELECT p.*, c.name as row_title, c.description as row_description FROM products p, categories c WHERE c.id = p.category_id AND category_id = " . $configurations[LATEST_PRODUCTS_CATEGORY_2];
-    $sql_latest3 = "SELECT p.*, c.name as row_title, c.description as row_description FROM products p, categories c WHERE c.id = p.category_id AND category_id = " . $configurations[LATEST_PRODUCTS_CATEGORY_3];
+    $sql_latest1 = "SELECT p.*, c.name as row_title, c.description as row_description FROM products p, categories c WHERE c.id = p.category_id AND category_id = " . $configurations[LATEST_PRODUCTS_CATEGORY_1] ." ORDER BY p.id DESC";
+    $sql_latest2 = "SELECT p.*, c.name as row_title, c.description as row_description FROM products p, categories c WHERE c.id = p.category_id AND category_id = " . $configurations[LATEST_PRODUCTS_CATEGORY_2] ." ORDER BY p.id DESC";
+    $sql_latest3 = "SELECT p.*, c.name as row_title, c.description as row_description FROM products p, categories c WHERE c.id = p.category_id AND category_id = " . $configurations[LATEST_PRODUCTS_CATEGORY_3] ." ORDER BY p.id DESC";
 
     $data = array();
     $data["configurations"] = $configurations;

@@ -7,7 +7,7 @@
                 <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
             </ul>
         </div>
-        <img src="<?= S3_BASE_URL. "/products/" .$product->image1 ?>" alt="">
+        <img src="<?= S3_BASE_URL. "/collections/" .$product->image1 ?>" alt="">
     </div>
     <div class="down-content">
         <h4><?= $product->name ?></h4>

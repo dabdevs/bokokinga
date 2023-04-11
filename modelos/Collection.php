@@ -5,9 +5,14 @@ require "../config/Connection.php";
 
 class Collection
 {
+	private $id;
+	private $name;
+
 	//Implementamos nuestro constructor
-	public function __construct()
+	public function __construct($id=null, $name=null)
 	{
+		$this->id = $id;
+		$this->name = $name;
 	}
 
 	// Insert new data
@@ -50,12 +55,15 @@ class Collection
 		return runQuery($sql);
 	}
 
-	// Get all products of the category
-	public function products($name)
+	// Get all products of the collection
+	public function products($limit=false)
 	{
 		$sql = "SELECT c.description as collection_description, p.* FROM products p
             JOIN categories c ON p.category_id = c.id 
-            WHERE c.name = '$name'";
+            WHERE c.name = '$this->name' 
+			ORDER BY p.id DESC";
+
+		if ($limit) $sql .= " LIMIT $limit";
 
 		$collection =  runQuery($sql);
 

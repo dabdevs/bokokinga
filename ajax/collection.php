@@ -19,27 +19,6 @@ function resizeImage($file, $max_width, $max_height)
 
 	list($orig_width, $orig_height) = getimagesize($filename);
 
-	/*
-	// Calculate new dimensions while preserving aspect ratio
-	$aspectRatio = $width / $height;
-	if ($aspectRatio > 1 && $width > $max_width) {
-		$new_width = $max_width;
-		$new_height = $max_width / $aspectRatio;
-	} elseif ($aspectRatio <= 1 && $height > $max_height) {
-		$new_height = $max_height;
-		$new_width = $max_height * $aspectRatio;
-	} else {
-		// Image is already smaller than max dimensions
-		$new_width = $max_width;
-		$new_height = $max_height;
-	}
-
-	$image_p = imagecreatetruecolor((int)$new_width, (int)$new_height);
-	$image = imagecreatefromjpeg($filename);
-	imagecopyresampled($image_p, $image, 0, 0, 0, 0, (int)$new_width, (int)$new_height, (int)$width, (int)$height);
-	
-	*/
-
 	// Calculate the new dimensions for the resized image
 	$width_ratio = $max_width / $orig_width;
 	$height_ratio = $max_height / $orig_height;
@@ -63,10 +42,6 @@ function resizeImage($file, $max_width, $max_height)
 	imagedestroy($src_image);
 	imagedestroy($resized_image);
 
-
-	// Output
-	// imagejpeg($image_p, $target_dir . '/' . $file['name']);
-
 	return $file;
 }
 
@@ -79,32 +54,6 @@ function uploadImage($file, $target_dir, $max_width = null, $max_height = null)
 
 	if ($max_width != null && $max_height != null)
 		$new_file = resizeImage($file, $max_width, $max_height);
-
-	/*
-	list($width, $height, $type) = getimagesize($filename);
-
-	// Calculate new dimensions while preserving aspect ratio
-	$aspectRatio = $width / $height;
-	if ($aspectRatio > 1 && $width > $max_width) {
-		$new_width = $max_width;
-		$new_height = $max_width / $aspectRatio;
-	} elseif ($aspectRatio <= 1 && $height > $max_height) {
-		$new_height = $max_height;
-		$new_width = $max_height * $aspectRatio;
-	} else {
-		// Image is already smaller than max dimensions
-		$new_width = $max_width;
-		$new_height = $max_height;
-	}
-
-	$image_p = imagecreatetruecolor((int)$new_width, (int)$new_height);
-	$image = imagecreatefromjpeg($filename);
-	imagecopyresampled($image_p, $image, 0, 0, 0, 0, (int)$new_width, (int)$new_height, (int)$width, (int)$height);
-
-	// Output
-	// imagejpeg($image_p, $target_dir . '/' . $file['name']);
-
-	*/
 
 	$s3 = new S3;
 	

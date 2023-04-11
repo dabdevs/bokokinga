@@ -1,11 +1,9 @@
 <?php
 
-namespace Bokokinga\Modelos;
-
 //Incluímos inicialmente la conexión a la base de datos
 require "../config/Connection.php";
 
-class Category
+class Collection
 {
 	//Implementamos nuestro constructor
 	public function __construct()

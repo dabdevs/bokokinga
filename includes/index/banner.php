@@ -2,7 +2,7 @@
 <div class="main-banner" id="top">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-6 col-sm-12">
                 <div class="left-content">
                     <div class="thumb">
                         <div class="inner-content">
@@ -16,12 +16,12 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-6 col-sm-12">
                 <div class="right-content">
                     <div class="row">
                         <?php
                         foreach ($collections as $collection) { ?>
-                            <div class="col-lg-6">
+                            <div class="col-sm-6">
                                 <div class="right-first-image">
                                     <div class="thumb">
                                         <div class="inner-content">
@@ -37,7 +37,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <img src="public/img/categories/<?= $collection->image ?>">
+                                        <img height="283px" src="<?= $collection->image == null ? COLLECTION_INDEX_FOLDER . "/category-default.png" : S3_BASE_URL . "/collections/" . $collection->image ?>">
                                     </div>
                                 </div>
                             </div>

@@ -1,5 +1,5 @@
 <?php
-$title = 'Categorías';
+$title = 'Colecciones';
 ob_start();
 ?>
 
@@ -140,7 +140,7 @@ include './includes/layout.php';
 
         $.ajax({
             type: "POST",
-            url: "../ajax/category.php?op=delete",
+            url: "../ajax/collection.php?op=delete",
             data: {
                 id: id
             },
@@ -156,7 +156,7 @@ include './includes/layout.php';
         e.preventDefault();
         var formData = new FormData(e.target);
         var nuevo = $("#nuevo").val();
-        var url = nuevo == 1 ? "../ajax/category.php?op=save" : "../ajax/category.php?op=edit";
+        var url = nuevo == 1 ? "../ajax/collection.php?op=save" : "../ajax/collection.php?op=edit";
 
         $.ajax({
             url: url,
@@ -181,7 +181,7 @@ include './includes/layout.php';
 
         $.ajax({
             type: "POST",
-            url: "../ajax/category.php?op=show",
+            url: "../ajax/collection.php?op=show",
             data: {
                 id
             },
@@ -217,7 +217,7 @@ include './includes/layout.php';
                 'pdf'
             ],
             "ajax": {
-                url: "../ajax/category.php?op=list",
+                url: "../ajax/collection.php?op=list",
                 type: "get",
                 dataType: "json",
                 error: function(e) {

@@ -4,8 +4,10 @@ require "./config/Connection.php";
 
 function getCollections()
 {
+    /*
     if (isset($_COOKIE['collections']))
         return unserialize($_COOKIE['collections']);
+    */
 
     $sql = "SELECT * FROM categories";
     $collections =  runQuery($sql);

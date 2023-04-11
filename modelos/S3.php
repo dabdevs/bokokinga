@@ -1,7 +1,7 @@
 <?php
+
 require '../vendor/autoload.php';
 use Aws\S3\S3Client;
-//require "./config/Connection.php";
 
 class S3
 {
@@ -37,11 +37,26 @@ class S3
 
     public function getObject($filename)
     {
-        $result = $this->s3->putObject([
+        $result = $this->s3->getObject([
             'Bucket' => $this->bucket,
             'Key'    => $filename
         ]);
 
         return $result['Body']->getContents();
+    }
+
+    public function deleteObject($filename)
+    {
+        try {
+            $result = $this->s3->deleteObject([
+                'Bucket' => $this->bucket,
+                'Key'    => $filename
+            ]);
+            
+            return $result;
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+        
     }
 }

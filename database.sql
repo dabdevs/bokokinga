@@ -58,7 +58,7 @@ CREATE TABLE categories (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR (150) UNIQUE NOT NULL,
   description VARCHAR (255) DEFAULT NULL,
-  image VARCHAR (255) DEFAULT 'category-default.png',
+  image VARCHAR (255) DEFAULT NULL,
   parent_id INT DEFAULT NULL
 );
 

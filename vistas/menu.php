@@ -7,8 +7,8 @@
         </div>
         <div class="publico m-0">
             <a href="./dashboard.php"><i class='bx bx-home'></i><span>Dashboard</span></a>
-            <a href="./category.php" id="categoria"><i class='bx bx-category'></i><span>Categoría</span></a>
-            <a href="configuration.php"><i class="bx bxs-cog"></i><span>Configuraciones</span></a>
+            <a href="./collections.php" id="categoria"><i class='bx bx-category'></i><span>Colecciones</span></a>
+            <a href="configurations.php"><i class="bx bxs-cog"></i><span>Configuraciones</span></a>
         </div>
         <div class="configuracion">
             <a href="#" onclick="logout()"><i class='bx bx-log-out'></i><span>Salir</span></a>
